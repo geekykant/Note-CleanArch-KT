@@ -29,7 +29,7 @@ com.paavam.noteme    # app package (root)
 com.paavam.core    # core package
 .
 |-- data
-|   `-- Node.kt
+|   `-- Note.kt
 |-- repository
 |   |-- NoteDataSource.kt
 |   `-- NoteRepository.kt
