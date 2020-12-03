@@ -17,11 +17,13 @@ data class NoteEntity (
     var updateTime: Long,
 
     @PrimaryKey(autoGenerate = true)
-    var id: Long = 0
+    var id: Long = 0,
+
+    var priority: Int = 0,
 ){
     companion object{
-        fun fromNote(note: Note) = NoteEntity(note.title, note.content, note.creationTime, note.updateTime, note.id)
+        fun fromNote(note: Note) = NoteEntity(note.title, note.content, note.creationTime, note.updateTime, note.id, note.priority)
     }
 
-    fun toNote() = Note(title, content, creationTime, updateTime, id)
+    fun toNote() = Note(title, content, creationTime, updateTime, id, priority)
 }

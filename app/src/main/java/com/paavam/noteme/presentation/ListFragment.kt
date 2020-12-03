@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.paavam.noteme.R
 import com.paavam.noteme.framework.db.ListViewModel
 import kotlinx.android.synthetic.main.fragment_list.*
@@ -33,7 +34,7 @@ class ListFragment : Fragment(), ListAction {
         super.onViewCreated(view, savedInstanceState)
 
         notesListView.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL)
             adapter = notesListAdapter
         }
 

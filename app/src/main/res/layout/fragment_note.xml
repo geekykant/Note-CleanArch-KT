@@ -4,31 +4,100 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/item_margin"
     tools:context=".presentation.NoteFragment">
 
-    <EditText
-        android:id="@+id/titleView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Title"
-        android:inputType="textPersonName"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/titleLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/contentView"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:ems="10"
-        android:gravity="top|left"
-        android:hint="Content"
-        android:inputType="textPersonName"
+        android:layout_height="wrap_content"
+        android:hint="Title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/titleView"
+            android:ems="10"
+            android:layout_width="match_parent"
+            android:inputType="textShortMessage"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/priorityHorizontalView"
+        android:layout_marginTop="@dimen/item_margin"
+        app:layout_constraintTop_toBottomOf="@+id/titleLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/priorityGroup"
+            app:singleLine="true"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            app:chipSpacingHorizontal="15dp"
+            app:checkedChip="@id/priorityLowChip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/priorityLowChip"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                app:chipIcon="@drawable/priority_circle"
+                app:chipIconTint="@color/low_priority"
+                app:chipIconVisible="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Low" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/priorityMediumChip"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                app:chipIcon="@drawable/priority_circle"
+                app:chipIconTint="@color/medium_priority"
+                app:chipIconVisible="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medium" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/priorityHighChip"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                app:chipIcon="@drawable/priority_circle"
+                app:chipIconTint="@color/high_priority"
+                app:chipIconVisible="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="High" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textField"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleView" />
+        android:layout_marginTop="@dimen/item_margin"
+        app:layout_constraintTop_toBottomOf="@+id/priorityHorizontalView"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="Content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/contentView"
+            android:ems="10"
+            android:gravity="top|left"
+            android:inputType="textMultiLine"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/checkButton"

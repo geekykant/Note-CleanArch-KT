@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.Navigation
+import com.google.android.material.chip.Chip
 import com.paavam.core.data.Note
 import com.paavam.noteme.R
 import com.paavam.noteme.framework.NoteViewModel
@@ -54,6 +55,17 @@ class NoteFragment : Fragment() {
                 currentNote.title = titleView.text.toString()
                 currentNote.content = contentView.text.toString()
                 currentNote.updateTime = time
+
+                for (i in 0 until priorityGroup.childCount) {
+                    val chip = priorityGroup.getChildAt(i) as Chip
+                    if (chip.isChecked){
+                        currentNote.priority = i
+                        break
+                    }
+                }
+
+                priorityGroup.checkedChipId
+
                 if (currentNote.id == 0L) {
                     currentNote.creationTime = time
                 }
@@ -86,6 +98,10 @@ class NoteFragment : Fragment() {
                 currentNote = note
                 titleView.setText(it.title, TextView.BufferType.EDITABLE)
                 contentView.setText(it.content, TextView.BufferType.EDITABLE)
+
+                priorityGroup.clearCheck()
+                val chip = priorityGroup.getChildAt(currentNote.priority) as Chip
+                chip.isChecked = true
             }
         })
     }
